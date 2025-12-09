@@ -1,76 +1,163 @@
-import project1 from "../assets/projects/project-1.webp";
-import project2 from "../assets/projects/project-2.webp";
-import project3 from "../assets/projects/project-3.webp";
-import project4 from "../assets/projects/project-4.webp";
+// --- DATA PORTFOLIO ---
 
-export const HERO_CONTENT = `I am a passionate full stack developer with a knack for crafting robust and scalable web applications. With 5 years of hands-on experience, I have honed my skills in front-end technologies like React and Next.js, as well as back-end technologies like Node.js, MySQL, PostgreSQL, and MongoDB. My goal is to leverage my expertise to create innovative solutions that drive business growth and deliver exceptional user experiences.`;
+// DESKRIPSI UTAMA
+export const HERO_CONTENT = `I am a passionate 3D Artist and Game Technology student with a curiosity for exploring new digital realms. While my primary focus is on Game Development, I also thrive as a Freelance 3D Generalist, crafting fluid animations for mobile and vibrant 3D icons. I enjoy blending technical skills with artistic vision to bring ideas to life.`;
 
-export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer with a passion for creating efficient and user-friendly web applications. With 5 years of professional experience, I have worked with a variety of technologies, including React, Next.js, Node.js, MySQL, PostgreSQL, and MongoDB. My journey in web development began with a deep curiosity for how things work, and it has evolved into a career where I continuously strive to learn and adapt to new challenges. I thrive in collaborative environments and enjoy solving complex problems to deliver high-quality solutions. Outside of coding, I enjoy staying active, exploring new technologies, and contributing to open-source projects.`;
+export const ABOUT_TEXT = `My journey in the digital arts began with a simple curiosity for how virtual worlds are made, which quickly evolved into a dedicated career path in 3D Art and Game Development. I specialize in creating assets that are not only visually striking but also optimized for performance. As a freelancer, I've honed my skills in 3D Generalist roles, producing high-quality animations for mobile platforms and designing unique 3D icons. I am a lifelong learner, constantly exploring new software and techniques to stay ahead in the ever-evolving game industry. I believe in the power of visual storytelling and strive to create immersive experiences that resonate with players.`;
 
+// PENGALAMAN KERJA
 export const EXPERIENCES = [
   {
-    year: "2023 - Present",
-    role: "Senior Full Stack Developer",
-    company: "Google Inc.",
-    description: `Led a team in developing and maintaining web applications using JavaScript, React.js, and Node.js. Implemented RESTful APIs and integrated with MongoDB databases. Collaborated with stakeholders to define project requirements and timelines.`,
-    technologies: ["Javascript", "React.js", "Next.js", "mongoDB"],
+    year: "Nov 2023 - Jun 2025",
+    role: "3D Artist",
+    company: "GingerSun Games",
+    description: `Contributed to the 3D asset production pipeline for the game "Elimora", including NPC character modeling, rigging, animation, and creating environment assets (buildings & props). Expanded the studio's portfolio by working on Roblox-based projects, creating characters and assets optimized for the platform. Ensured all 3D assets were game-ready (low poly) without compromising visual quality.`,
+    technologies: [
+      "Blender",
+      "Roblox Studio",
+      "Rigging",
+      "Animation",
+      "Low Poly",
+    ],
   },
   {
-    year: "2022 - 2023",
-    role: "Frontend Developer",
-    company: "Adobe",
-    description: `Designed and developed user interfaces for web applications using Next.js and React. Worked closely with backend developers to integrate frontend components with Node.js APIs. Implemented responsive designs and optimized frontend performance.`,
-    technologies: ["HTML", "CSS", "Vue.js", "mySQL"],
+    year: "Feb 2022 - July 2023",
+    role: "Freelance 3D Artist",
+    company: "Fiverr",
+    description: `Created 3D mascot designs based on client concepts. Produced low-poly game character assets, handling the full pipeline from modeling and texturing to animation, ensuring the final delivery met the client's artistic vision.`,
+    technologies: ["Blender", "3D Modeling", "Texturing", "Animation"],
   },
   {
-    year: "2021 - 2022",
-    role: "Full Stack Developer",
-    company: "Facebook",
-    description: `Developed and maintained web applications using JavaScript, React.js, and Node.js. Designed and implemented RESTful APIs for data communication. Collaborated with cross-functional teams to deliver high-quality software products on schedule.`,
-    technologies: ["Python", "Svelte", "Three.js", "Postgres"],
-  },
-  {
-    year: "2020 - 2021",
-    role: "Software Engineer",
-    company: "Paypal",
-    description: `Contributed to the development of web applications using JavaScript, React.js, and Node.js. Managed databases and implemented data storage solutions using MongoDB. Worked closely with product managers to prioritize features and enhancements.`,
-    technologies: ["Ruby", "Rails", "PHP", "Sqlite"],
+    year: "Jan 2021 - May 2021",
+    role: "Game Artist",
+    company: "Educa Studio",
+    description: `Responsible for creating 3D assets representing traditional Nusantara weapons and developing 3D game characters, contributing to the cultural depth of the game projects.`,
+    technologies: ["Blender", "3D Modeling", "Game Assets"],
   },
 ];
 
+// PROYEK & GALERI
 export const PROJECTS = [
   {
-    title: "E-Commerce Website",
-    image: project1,
+    title: "PKM-VGK: Smart Coastal Zone",
+    image: "/projects/PKM/pkm1.jpg", 
+    gallery: [
+      "/projects/PKM/pkm1.jpg",
+      "/projects/PKM/pkm2.jpg",
+      "/projects/PKM/pkm3.jpg",
+      "/projects/PKM/pkm4.jpg",
+      "/projects/PKM/pkm5.jpg",
+      "/projects/PKM/pkm6.jpg"
+    ], 
     description:
-      "A fully functional e-commerce website with features like product listing, shopping cart, and user authentication.",
-    technologies: ["HTML", "CSS", "React", "Node.js", "MongoDB"],
+      "A 3D visualization project for an Integrated Coastal Zone Management concept based on Smart City principles. Created detailed environment renders to visualize the potential welfare improvements for coastal communities.",
+    technologies: ["Sketchup", "Lumion"],
+    link: "https://www.youtube.com/watch?v=6DuDsAC2zgI" 
   },
   {
-    title: "Task Management App",
-    image: project2,
+    title: "RED-LIFE: Survival on Mars",
+    image: "/projects/REDLIFE/redlife1.jpg", 
+    gallery: [
+      "/projects/REDLIFE/redlife1.jpg",
+      "/projects/REDLIFE/redlife2.jpg",
+      "/projects/REDLIFE/redlife3.jpg",
+      "/projects/REDLIFE/redlife4.jpg", // UPDATE: Menambahkan foto baru
+      "/projects/REDLIFE/redlife5.jpg"  // UPDATE: Menambahkan foto baru
+    ], 
     description:
-      "An application for managing tasks and projects, with features such as task creation, assignment, and progress tracking.",
-    technologies: ["HTML", "CSS", "Angular", "Firebase"],
+      "A Final Year Project focused on creating a survival game environment. As an Environment Artist within a team of 9, I specialized in optimizing game assets using Trimsheets and Texture Atlases to ensure high performance without sacrificing visual quality.",
+    technologies: ["Blender", "Unity", "Trimsheets", "Photoshop"],
+    link: "https://ubaner.itch.io/ecosity-newdawnonmars" 
   },
   {
-    title: "Portfolio Website",
-    image: project3,
+    title: "Hanty - Official Mascots", // PROJECT BARU: Hanty
+    image: "/projects/HANTY/han1.jpg", 
+    gallery: [
+      "/projects/HANTY/han1.jpg",
+      "/projects/HANTY/han2.jpg",
+      "/projects/HANTY/han3.jpg",
+      "/projects/HANTY/han4.jpg",
+      "/projects/HANTY/han5.jpg",
+      "/projects/HANTY/han6.jpg",
+      "/projects/HANTY/han7.jpg",
+      "/projects/HANTY/han8.jpg"
+    ], 
     description:
-      "A personal portfolio website showcasing projects, skills, and contact information.",
-    technologies: ["HTML", "CSS", "React", "Bootstrap"],
+      "Designed the official 3D mascots for Hanty, featuring a dynamic duo of a Bear and a Raccoon. A key feature of this project was creating a versatile wardrobe system, allowing the mascots to wear various costumes for different contexts. These 3D characters were rendered for seamless web integration to enhance the brand's visual identity.",
+    technologies: ["Blender", "Character Design", "3D Rendering"],
+    // Tidak ada link sesuai request
   },
   {
-    title: "Blogging Platform",
-    image: project4,
+    title: "Carriage Race Assets",
+    image: "/projects/CARRIAGE/car1.jpg", 
+    gallery: [
+      "/projects/CARRIAGE/car1.jpg",
+      "/projects/CARRIAGE/car2.jpg",
+      "/projects/CARRIAGE/car3.jpg",
+      "/projects/CARRIAGE/car4.jpg",
+      "/projects/CARRIAGE/car5.jpg"
+    ], 
     description:
-      "A platform for creating and publishing blog posts, with features like rich text editing, commenting, and user profiles.",
-    technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
+      "Commissioned work for Gingersun Games. Designed and modeled stylized carriage carts tailored for the 'Carriage Race' game on Roblox, ensuring low-poly optimization for smooth multiplayer gameplay.",
+    technologies: ["Blender", "Roblox Studio", "Photoshop"],
+    link: "https://www.roblox.com/games/101496237005693/Carriage-Race" 
+  },
+  {
+    title: "Bo - GetChoys Mascot",
+    image: "/projects/BO/bo-welcome.gif", 
+    gallery: [
+      "/projects/BO/bo-welcome.gif",
+      "/projects/BO/bo-pose-hi.png",
+      "/projects/BO/bo-pomPom.gif",
+      "/projects/BO/bo-loading.gif",
+      "/projects/BO/bo-impact.gif",
+      "/projects/BO/bo-coin.gif",
+      "/projects/BO/bo-celebration.gif",
+      "/projects/BO/streak-flame.gif"
+    ], 
+    description:
+      "Designed 'Bo', the official 3D mascot for GetChoys. The scope included character modeling, rigging, and animating for both web and mobile app integration, as well as creating a cohesive set of 3D icons.",
+    technologies: ["Blender", "Character Animation", "3D Iconography"],
+    link: "https://getchoys.com/" 
+  },
+  {
+    title: "Aventala: The Lost Tribe",
+    image: "/projects/AVENTALA/aven1.jpg", 
+    gallery: [
+      "/projects/AVENTALA/aven1.jpg",
+      "/projects/AVENTALA/aven2.png",
+      "/projects/AVENTALA/aven3.png",
+      "/projects/AVENTALA/aven4.png"
+    ], 
+    description:
+      "An Independent Study (MSIB) project focused on world-building. Contributed to the creation of unique NPC models and immersive environmental assets to bring the lore of 'The Lost Tribe' to life.",
+    technologies: ["Blender", "Character Modeling", "Environment Design"],
+    link: "https://aventala.fandom.com/id/wiki/Aventala_Wiki" 
+  },
+  {
+    title: "LKS Wilker 2 - 2022",
+    image: "/projects/LKS/lks1.jpg", 
+    gallery: [
+      "/projects/LKS/lks1.jpg",
+      "/projects/LKS/lks2.jpg",
+      "/projects/LKS/lks3.jpg",
+      "/projects/LKS/lks4.jpg",
+      "/projects/LKS/lks5.jpg",
+      "/projects/LKS/lks6.jpg"
+    ], 
+    description:
+      "A competitive 3D art project for LKS Wilker 2. Created a complete 3D scenery composition under strict time constraints, demonstrating proficiency in modeling, texturing, and rendering.",
+    technologies: ["Blender", "Cycles Render", "Photoshop"],
   },
 ];
 
 export const CONTACT = {
-  address: "767 Fifth Avenue, New York, NY 10153 ",
-  phoneNo: "+12 4555 666 00 ",
-  email: "me@example.com",
+  // Masukkan Email Kamu
+  email: "aishazirly@gmail.com", 
+  
+  // Masukkan Link Profil Instagram Kamu
+  instagram: "https://www.instagram.com/cattyburn/",
+  
+  // Masukkan Username Instagram (untuk ditampilkan di layar)
+  instagramHandle: "@cattyburn" 
 };

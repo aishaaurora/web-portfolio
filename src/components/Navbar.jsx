@@ -10,23 +10,16 @@ const Navbar = () => {
       </div>
       <div className="mx-8 flex items-center justify-center gap-4 text-2xl">
         <a
-          href="https://www.linkedin.com/in/maulana-malik-ibrahim-7b4539216/"
+          href="https://www.linkedin.com/in/aishaaurora/"
           target="_blank"
           rel="noopener norefferer"
           aria-label="LinkedIn"
         >
           <FaLinkedin />
         </a>
+        
         <a
-          href="https://github.com/LuciferLovesMe"
-          target="_blank"
-          rel="noopener norefferer"
-          aria-label="Github"
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="https://www.instagram.com/abeemm666/"
+          href="https://www.instagram.com/cattyburn/"
           target="_blank"
           rel="noopener norefferer"
           aria-label="Instagram"
