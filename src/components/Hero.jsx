@@ -76,7 +76,7 @@ const Hero = () => {
             {/* UPDATE: Tombol Hijau Murni (Tanpa Pink) */}
             <motion.a
               variants={childVariants}
-              href="/cvabeemm.pdf"
+              href="/CV.pdf"
               target="_blank"
               rel="noopener noreference"
               download
