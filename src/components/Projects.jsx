@@ -98,11 +98,11 @@ const Projects = () => {
                 >
                   {/* --- BAGIAN GAMBAR --- */}
                   <div className="w-full lg:w-2/5">
-                    <div className="relative w-full pt-[60%] overflow-hidden rounded-xl shadow-lg border border-stone-100">
+                    <div className="relative w-full overflow-hidden rounded-xl shadow-lg border border-stone-100">
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-auto max-h-[400px] object-cover hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                   </div>
