@@ -136,42 +136,42 @@ const ProjectDetail = () => {
                 </div>
             </motion.div>
         </div>
+      </div>
 
-        {/* --- GALERI RENDER --- */}
-        <div className="mt-20 border-t border-stone-200 pt-16">
-            <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-3xl font-bold mb-10 text-center text-stone-800"
-            >
-                Project Gallery
-            </motion.h3>
-            
-            {galleryImages.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {galleryImages.map((img, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group relative h-72 overflow-hidden rounded-2xl shadow-lg cursor-pointer"
-                        >
-                            <img 
-                                src={img} 
-                                alt={`Render ${index + 1}`} 
-                                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </motion.div>
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center py-16 bg-stone-50 rounded-3xl border-2 border-dashed border-stone-200">
-                    <p className="text-stone-500 font-medium text-lg mb-2">Belum ada gambar tambahan.</p>
-                </div>
-            )}
-        </div>
+      {/* --- GALERI RENDER --- */}
+      <div className="w-full mt-20 border-t border-stone-200 pt-16">
+          <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-3xl font-bold mb-10 text-center text-stone-800"
+          >
+              Project Gallery
+          </motion.h3>
+          
+          {galleryImages.length > 0 ? (
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+                  {galleryImages.map((img, index) => (
+                      <motion.div
+                          key={index}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          className="group relative aspect-video overflow-hidden cursor-pointer"
+                      >
+                          <img 
+                              src={img} 
+                              alt={`Render ${index + 1}`} 
+                              className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </motion.div>
+                  ))}
+              </div>
+          ) : (
+              <div className="max-w-7xl mx-auto text-center py-16 bg-stone-50 rounded-3xl border-2 border-dashed border-stone-200 px-6">
+                  <p className="text-stone-500 font-medium text-lg mb-2">Belum ada gambar tambahan.</p>
+              </div>
+          )}
       </div>
     </div>
   );
