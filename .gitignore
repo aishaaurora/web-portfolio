@@ -20,6 +20,7 @@ Misc
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 Logs
 
@@ -41,3 +42,4 @@ VISUAL STUDIO FILES (VERSI FINAL - BENAR)
 Vercel
 
 .vercel
+.env*

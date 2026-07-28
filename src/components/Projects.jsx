@@ -1,19 +1,44 @@
-import { useState } from "react"; // Import useState untuk filter
-import { PROJECTS } from "../constants";
-import { motion, AnimatePresence } from "framer-motion"; // AnimatePresence untuk animasi halus
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Projects = () => {
-  // State untuk menyimpan kategori yang sedang aktif (Default: All)
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Daftar kategori yang mau ditampilkan di tombol
-  const categories = ["All", "3D Character", "3D Hardsurface","3D Icon", "Projects", "2D Illustration"];
+  // State baru untuk menyimpan data dari Notion dan status loading
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Logika Filter: Jika "All" ambil semua, jika tidak ambil yang sesuai kategori
-  const filteredProjects = activeCategory === "All" 
-    ? PROJECTS 
-    : PROJECTS.filter(project => project.category === activeCategory);
+  const categories = ["All", "3D Character", "Animation Video", "Game Art", "3D Icon", "Projects", "2D Illustration"];
+
+  // Menarik data dari API lokal saat komponen pertama kali dimuat
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        if (!response.ok) {
+          throw new Error('Gagal mengambil data dari server');
+        }
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // Filter menggunakan state 'projects' hasil fetch, bukan konstanta lama
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter(project =>
+      project.categories && project.categories.includes(activeCategory)
+    );
 
   return (
     <div className="pb-4">
@@ -21,7 +46,7 @@ const Projects = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="my-20 text-center text-4xl text-stone-800"
+        className="my-20 text-center text-4xl text-stone-800 font-bold"
       >
         Projects
       </motion.h2>
@@ -33,10 +58,9 @@ const Projects = () => {
             key={index}
             onClick={() => setActiveCategory(category)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border 
-              ${
-                activeCategory === category
-                  ? "bg-emerald-600 text-white border-emerald-600 shadow-md scale-105" // Gaya saat Aktif
-                  : "bg-white text-stone-600 border-stone-200 hover:border-emerald-400 hover:text-emerald-600" // Gaya saat Tidak Aktif
+              ${activeCategory === category
+                ? "bg-emerald-600 text-white border-emerald-600 shadow-md scale-105"
+                : "bg-white text-stone-600 border-stone-200 hover:border-emerald-400 hover:text-emerald-600"
               }`}
           >
             {category}
@@ -44,71 +68,97 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* --- GRID PROJECTS --- */}
-      <motion.div layout className="grid grid-cols-1 gap-8">
-        <AnimatePresence>
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((project, index) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                key={project.title} // Gunakan title sebagai key agar unik saat filter
-                className="mb-8 flex flex-wrap lg:justify-center"
-              >
-                <div className="w-full lg:w-1/4">
-                  <img
-                    src={project.image}
-                    width={250}
-                    alt={project.title}
-                    className="mb-6 rounded shadow-md"
-                  />
-                </div>
-                <div className="w-full max-w-xl lg:w-3/4">
-                  <h3 className="mb-2 font-semibold text-2xl text-stone-800">
-                    {project.title}
-                  </h3>
-                  
-                  {/* Label Kategori Kecil di atas Deskripsi */}
-                  <span className="inline-block bg-stone-100 text-stone-500 text-xs px-2 py-1 rounded mb-2 border border-stone-200">
-                    {project.category}
-                  </span>
+      {/* --- LOADING & ERROR STATES --- */}
+      {loading && (
+        <div className="text-center w-full py-20">
+          <p className="text-emerald-600 font-medium animate-pulse">Loading projects data...</p>
+        </div>
+      )}
 
-                  <p className="mb-4 text-stone-600">{project.description}</p>
-                  
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {project.technologies.map((tech, index) => (
-                        <span
-                        key={index}
-                        className="rounded bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 hover:bg-emerald-200 transition-colors"
-                        >
-                        {tech}
-                        </span>
-                    ))}
+      {error && (
+        <div className="text-center w-full py-20">
+          <p className="text-red-500 font-medium">Error: {error}</p>
+        </div>
+      )}
+
+      {/* --- GRID PROJECTS --- */}
+      {!loading && !error && (
+        <motion.div layout className="grid grid-cols-1 gap-12 max-w-6xl mx-auto">
+          <AnimatePresence>
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  key={project.id} // Diubah menggunakan project.id dari database
+                  className="mb-8 flex flex-col lg:flex-row gap-8 items-start"
+                >
+                  {/* --- BAGIAN GAMBAR --- */}
+                  <div className="w-full lg:w-2/5">
+                    <div className="relative w-full pt-[60%] overflow-hidden rounded-xl shadow-lg border border-stone-100">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
                   </div>
 
-                  <Link 
-                    to={`/project/${PROJECTS.indexOf(project)}`} // Trik: Cari index asli dari data utama
-                    className="inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-pink-600 transition-colors bg-white border border-stone-200 px-4 py-2 rounded-full mt-2 shadow-sm"
-                  >
-                    View Details
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
-                  </Link>
-                </div>
-              </motion.div>
-            ))
-          ) : (
-            // Pesan jika kategori kosong (misal 2D Illustration belum ada isinya)
-            <div className="text-center w-full py-10">
+                  {/* --- BAGIAN TEKS & TOMBOL --- */}
+                  <div className="w-full lg:w-3/5 flex flex-col h-full">
+                    <h3 className="mb-2 font-bold text-3xl text-stone-800 tracking-tight">
+                      {project.title}
+                    </h3>
+
+                    {/* Label Kategori */}
+                    <div className="mb-4 flex gap-2 flex-wrap items-start">
+                      {project.categories && project.categories.map((cat, idx) => (
+                        <span key={idx} className="inline-flex bg-stone-100/80 backdrop-blur-sm text-stone-500 text-xs px-3 py-1.5 rounded-full border border-stone-200/50 font-medium tracking-wide">
+                          {cat}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="mb-6 text-stone-600 leading-relaxed text-lg flex-grow">{project.description}</p>
+
+                    {/* Software/Tools */}
+                    <div className="mb-6 flex flex-wrap gap-2 items-start">
+                      {project.technologies && project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="rounded bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-700 border border-emerald-100/50"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Tombol View Details */}
+                    <div>
+                      <Link
+                        to={`/project/${project.id}`} // Diubah dari indexOf menjadi ID Database
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-stone-600 hover:text-white transition-all duration-300 bg-white hover:bg-emerald-600 border border-stone-200 hover:border-emerald-600 px-6 py-2.5 rounded-full shadow-sm hover:shadow-md group"
+                      >
+                        View Details
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <div className="text-center w-full py-10">
                 <p className="text-stone-400">Belum ada project di kategori ini.</p>
-            </div>
-          )}
-        </AnimatePresence>
-      </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      )}
     </div>
   );
 };

@@ -32,7 +32,9 @@ export const EXPERIENCES = [
 export const PROJECTS = [
   {
     title: "PKM-VGK: Smart Coastal Zone",
-    category: "3D Hardsurface", // Kategori Baru
+    section: "General", 
+    // PASTIKAN SEMUA MENGGUNAKAN 'categories' (dengan s) DAN ARRAY []
+    categories: ["Animation Video", "Projects"], 
     image: "/projects/PKM/pkm1.jpg", 
     gallery: [
       "/projects/PKM/pkm1.jpg",
@@ -42,13 +44,14 @@ export const PROJECTS = [
       "/projects/PKM/pkm5.jpg",
       "/projects/PKM/pkm6.jpg"
     ], 
-    description: "A 3D visualization project for an Integrated Coastal Zone Management concept based on Smart City principles.",
+    description: "A 3D visualization project for an Integrated Coastal Zone Management concept based on Smart City principles. Created detailed environment renders to visualize the potential welfare improvements for coastal communities.",
     technologies: ["Sketchup", "Lumion", "Photoshop"],
     link: "https://www.youtube.com/watch?v=6DuDsAC2zgI" 
   },
   {
     title: "RED-LIFE: Survival on Mars",
-    category: "Projects", // Kategori Baru
+    section: "Game Art",
+    categories: ["3D Hardsurface", "Game Art"],
     image: "/projects/REDLIFE/redlife1.jpg", 
     gallery: [
       "/projects/REDLIFE/redlife1.jpg",
