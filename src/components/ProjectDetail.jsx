@@ -1,19 +1,67 @@
-import React, { useEffect } from "react"; // Tambah useEffect
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { PROJECTS } from "../constants"; 
 import { motion } from "framer-motion";
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const project = PROJECTS[id];
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // EFEK BARU: Scroll ke paling atas saat halaman dibuka
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    const fetchProject = async () => {
+      try {
+        const response = await fetch('/api/projects');
+        
+        const contentType = response.headers.get("content-type");
+        let data = null;
+        if (contentType && contentType.includes("application/json")) {
+          data = await response.json();
+        }
+
+        if (!response.ok) {
+          throw new Error(data?.error || `Gagal mengambil data dari server (Status: ${response.status})`);
+        }
+
+        const foundProject = data.find(p => p.id === id);
+        setProject(foundProject);
+      } catch (err) {
+        console.error("Error fetching project detail:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="text-center w-full py-40">
+        <p className="text-emerald-600 font-medium animate-pulse text-xl">Loading project details...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center w-full py-40">
+        <p className="text-red-500 font-medium text-xl">Error: {error}</p>
+        <Link to="/" className="inline-block mt-4 text-emerald-600 hover:underline">Back to Home</Link>
+      </div>
+    );
+  }
 
   if (!project) {
-    return <div className="text-center text-stone-500 mt-20">Project tidak ditemukan!</div>;
+    return (
+      <div className="text-center text-stone-500 mt-40">
+        <h2 className="text-2xl font-bold mb-4">Project tidak ditemukan!</h2>
+        <Link to="/" className="inline-block text-emerald-600 hover:underline">Back to Home</Link>
+      </div>
+    );
   }
 
   const galleryImages = project.gallery || [];
