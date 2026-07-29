@@ -156,12 +156,12 @@ const ProjectDetail = () => {
                           initial={{ opacity: 0, scale: 0.95 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          className="group relative aspect-video overflow-hidden cursor-pointer"
+                          className="group relative overflow-hidden cursor-pointer"
                       >
                           <img 
                               src={img} 
                               alt={`Render ${index + 1}`} 
-                              className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                              className="w-full h-auto object-contain transform transition-transform duration-700 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </motion.div>

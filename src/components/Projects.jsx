@@ -83,10 +83,10 @@ const Projects = () => {
 
       {/* --- GRID PROJECTS --- */}
       {!loading && !error && (
-        <motion.div layout className="grid grid-cols-1 gap-12 max-w-6xl mx-auto">
+        <motion.div layout className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           <AnimatePresence>
             {filteredProjects.length > 0 ? (
-              filteredProjects.map((project) => (
+              filteredProjects.slice().reverse().map((project) => (
                 <motion.div
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -94,10 +94,10 @@ const Projects = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
                   key={project.id} // Diubah menggunakan project.id dari database
-                  className="mb-8 flex flex-col lg:flex-row gap-8 items-start"
+                  className="flex flex-col gap-6 bg-white p-6 lg:p-8 rounded-3xl border border-stone-200 shadow-sm hover:shadow-md transition-shadow h-full"
                 >
                   {/* --- BAGIAN GAMBAR --- */}
-                  <div className="w-full lg:w-2/5">
+                  <div className="w-full">
                     <div className="relative w-full overflow-hidden rounded-xl shadow-lg border border-stone-100">
                       <img
                         src={project.image}
@@ -108,7 +108,7 @@ const Projects = () => {
                   </div>
 
                   {/* --- BAGIAN TEKS & TOMBOL --- */}
-                  <div className="w-full lg:w-3/5 flex flex-col h-full">
+                  <div className="w-full flex flex-col h-full">
                     <h3 className="mb-2 font-bold text-3xl text-stone-800 tracking-tight">
                       {project.title}
                     </h3>
