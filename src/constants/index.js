@@ -1,6 +1,6 @@
 // --- DATA PORTFOLIO ---
 
-export const HERO_CONTENT = `I am a passionate 3D Artist and Game Technology student with a curiosity for exploring new digital realms. While my primary focus is on Game Development, I also thrive as a Freelance 3D Generalist, crafting fluid animations for mobile and vibrant 3D icons. I enjoy blending technical skills with artistic vision to bring ideas to life.`;
+export const HERO_CONTENT = `I am a 3D Artist and Game Developer who loves building immersive digital worlds. As a 3D Generalist, my work covers a wide range of skills, from creating low poly characters and game environments to crafting smooth animations and vibrant 3D icons. I always focus on balancing good art with technical needs, making sure every asset I create looks great and runs smoothly in the game engine.`;
 
 export const ABOUT_TEXT = `My journey in the digital arts began with a simple curiosity for how virtual worlds are made, which quickly evolved into a dedicated career path in 3D Art and Game Development. I specialize in creating assets that are not only visually striking but also optimized for performance. As a freelancer, I've honed my skills in 3D Generalist roles, producing high-quality animations for mobile platforms and designing unique 3D icons. I am a lifelong learner, constantly exploring new software and techniques to stay ahead in the ever-evolving game industry. I believe in the power of visual storytelling and strive to create immersive experiences that resonate with players.`;
 
@@ -186,7 +186,7 @@ export const PROJECTS = [
 ];
 
 export const CONTACT = {
-  email: "aisha.zirly@gmail.com", 
-  instagram: "https://www.instagram.com/aishazirly/",
-  instagramHandle: "@aishazirly" 
+  email: "aishazirly@gmail.com",
+  instagramPrimary: { handle: "@aishazirly", url: "https://www.instagram.com/aishazirly/" },
+  instagramSecondary: { handle: "@cattyburn", url: "https://www.instagram.com/cattyburn/" }
 };

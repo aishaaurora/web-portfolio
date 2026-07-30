@@ -30,9 +30,9 @@ const Contact = () => {
             {CONTACT.email}
         </motion.a>
 
-        {/* INSTAGRAM */}
+        {/* INSTAGRAM PRIMARY */}
         <motion.a 
-            href={CONTACT.instagram}
+            href={CONTACT.instagramPrimary.url}
             target="_blank"
             rel="noopener noreferrer"
             whileInView={{ opacity: 1, x: 0 }}
@@ -43,7 +43,23 @@ const Contact = () => {
              <div className="bg-stone-100 p-3 rounded-full group-hover:bg-pink-100 transition-colors">
                 <SiInstagram className="text-xl text-stone-700 group-hover:text-pink-600" />
             </div>
-            {CONTACT.instagramHandle}
+            {CONTACT.instagramPrimary.handle}
+        </motion.a>
+
+        {/* INSTAGRAM SECONDARY */}
+        <motion.a 
+            href={CONTACT.instagramSecondary.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 50 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex items-center gap-3 text-lg font-medium hover:text-pink-600 transition-colors group"
+        >
+             <div className="bg-stone-100 p-3 rounded-full group-hover:bg-pink-100 transition-colors">
+                <SiInstagram className="text-xl text-stone-700 group-hover:text-pink-600" />
+            </div>
+            {CONTACT.instagramSecondary.handle}
         </motion.a>
 
       </div>

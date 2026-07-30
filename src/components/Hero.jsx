@@ -71,18 +71,31 @@ const Hero = () => {
               {HERO_CONTENT}
             </motion.p>
             
-            {/* UPDATE: Tombol Hijau Murni (Tanpa Pink) */}
-            <motion.a
-              variants={childVariants}
-              href="/cv2026.pdf"
-              target="_blank"
-              rel="noopener noreference"
-              download
-              // Menggunakan gradasi hijau yang sama dengan Nama (emerald-900 ke green-700)
-              className="bg-gradient-to-r from-emerald-900 to-green-700 text-white rounded-full p-4 text-sm font-semibold mb-10 shadow-lg hover:shadow-xl hover:scale-105 hover:from-emerald-800 hover:to-green-600 transition-all duration-300"
-            >
-              Download CV
-            </motion.a>
+            <div className="flex flex-wrap gap-4 mb-10">
+              {/* UPDATE: Tombol Hijau Murni (Tanpa Pink) */}
+              <motion.a
+                variants={childVariants}
+                href="/CV_AishaAurora_2026 (2).pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                // Menggunakan gradasi hijau yang sama dengan Nama (emerald-900 ke green-700)
+                className="bg-gradient-to-r from-emerald-900 to-green-700 text-white rounded-full p-4 text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 hover:from-emerald-800 hover:to-green-600 transition-all duration-300"
+              >
+                Download CV
+              </motion.a>
+
+              {/* NEW: Tombol Portofolio Rigging (Gradasi Pink/Fuchsia) */}
+              <motion.a
+                variants={childVariants}
+                href="https://portfolioaisha.my.canva.site/rigportfolioica"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white rounded-full p-4 text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 hover:from-pink-600 hover:to-fuchsia-700 transition-all duration-300"
+              >
+                Rigging Portfolio
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>
