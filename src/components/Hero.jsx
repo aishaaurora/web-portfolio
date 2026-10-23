@@ -36,6 +36,7 @@ const Hero = () => {
           <motion.img
             src={profileAbim}
             alt="Aisha Aurora Zirlyvera"
+            decoding="async"
             className="rounded-3xl w-[80%] max-w-[450px] h-auto object-contain"
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}

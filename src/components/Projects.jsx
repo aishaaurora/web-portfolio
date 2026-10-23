@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { getOptimizedImageUrl } from "../utils/cloudinary";
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -17,8 +18,12 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const response = await fetch('/api/projects');
+        const contentType = response.headers.get("content-type");
         if (!response.ok) {
-          throw new Error('Gagal mengambil data dari server');
+          throw new Error('Gagal mengambil data dari server (status: ' + response.status + ')');
+        }
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error('Endpoint /api/projects mengembalikan format non-JSON. Silakan restart "npm start" agar setupProxy aktif, atau jalankan "npm run dev".');
         }
         const data = await response.json();
         setProjects(data);
@@ -98,11 +103,13 @@ const Projects = () => {
                 >
                   {/* --- BAGIAN GAMBAR --- */}
                   <div className="w-full">
-                    <div className="relative w-full overflow-hidden rounded-xl shadow-lg border border-stone-100">
+                    <div className="relative w-full aspect-video overflow-hidden rounded-xl shadow-lg border border-stone-100 bg-stone-100">
                       <img
-                        src={project.image}
+                        src={getOptimizedImageUrl(project.image)}
                         alt={project.title}
-                        className="w-full h-auto max-h-[400px] object-cover hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                   </div>

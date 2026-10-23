@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { getOptimizedImageUrl } from "../utils/cloudinary";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -16,15 +17,14 @@ const ProjectDetail = () => {
         const response = await fetch('/api/projects');
         
         const contentType = response.headers.get("content-type");
-        let data = null;
-        if (contentType && contentType.includes("application/json")) {
-          data = await response.json();
-        }
-
         if (!response.ok) {
-          throw new Error(data?.error || `Gagal mengambil data dari server (Status: ${response.status})`);
+          throw new Error(`Gagal mengambil data dari server (Status: ${response.status})`);
+        }
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error('Endpoint /api/projects mengembalikan format non-JSON. Silakan restart "npm start" agar setupProxy aktif, atau jalankan "npm run dev".');
         }
 
+        const data = await response.json();
         const foundProject = data.find(p => p.id === id);
         setProject(foundProject);
       } catch (err) {
@@ -83,12 +83,14 @@ const ProjectDetail = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="relative"
+                className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/50 bg-stone-100 flex items-center justify-center"
             >
                 <img 
-                    src={project.image} 
+                    src={getOptimizedImageUrl(project.image)} 
                     alt={project.title} 
-                    className="w-full h-auto rounded-3xl shadow-2xl border border-white/50"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
                 />
             </motion.div>
 
@@ -156,12 +158,14 @@ const ProjectDetail = () => {
                           initial={{ opacity: 0, scale: 0.95 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                          className="group relative overflow-hidden cursor-pointer"
+                          className="group relative w-full aspect-video overflow-hidden cursor-pointer bg-stone-100 flex items-center justify-center"
                       >
                           <img 
-                              src={img} 
+                              src={getOptimizedImageUrl(img)} 
                               alt={`Render ${index + 1}`} 
-                              className="w-full h-auto object-contain transform transition-transform duration-700 group-hover:scale-110"
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </motion.div>

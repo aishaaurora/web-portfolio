@@ -119,7 +119,7 @@ const Technologies = () => {
             animate="animate"
             className="p-4"
         >
-            <img src={substanceIcon} alt="Substance Painter" className="w-20 h-20 object-contain" />
+            <img src={substanceIcon} alt="Substance Painter" loading="lazy" decoding="async" className="w-20 h-20 object-contain" />
         </motion.div> 
         }
 
