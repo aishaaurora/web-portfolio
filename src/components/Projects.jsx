@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { getOptimizedImageUrl } from "../utils/cloudinary";
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -105,7 +104,7 @@ const Projects = () => {
                   <div className="w-full">
                     <div className="relative w-full aspect-video overflow-hidden rounded-xl shadow-lg border border-stone-100 bg-stone-100">
                       <img
-                        src={getOptimizedImageUrl(project.image)}
+                        src={project.image}
                         alt={project.title}
                         loading="lazy"
                         decoding="async"

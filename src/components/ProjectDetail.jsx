@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getOptimizedImageUrl } from "../utils/cloudinary";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -86,7 +85,7 @@ const ProjectDetail = () => {
                 className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/50 bg-stone-100 flex items-center justify-center"
             >
                 <img 
-                    src={getOptimizedImageUrl(project.image)} 
+                    src={project.image} 
                     alt={project.title} 
                     loading="lazy"
                     decoding="async"
@@ -161,7 +160,7 @@ const ProjectDetail = () => {
                           className="group relative w-full aspect-video overflow-hidden cursor-pointer bg-stone-100 flex items-center justify-center"
                       >
                           <img 
-                              src={getOptimizedImageUrl(img)} 
+                              src={img} 
                               alt={`Render ${index + 1}`} 
                               loading="lazy"
                               decoding="async"
