@@ -4,9 +4,10 @@ import {
   SiUnity, 
   SiUnrealengine, 
   SiAdobephotoshop,
-  SiAutodesk,
   SiAdobeillustrator,
-  SiSketchup
+  SiSketchup,
+  SiBlockbench,
+  SiGit
 } from "react-icons/si"; 
 import { motion } from "framer-motion";
 
@@ -55,6 +56,17 @@ const Technologies = () => {
           <SiBlender className="text-7xl text-orange-500" />
         </motion.div>
 
+        {/* BLOCKBENCH */}
+        <motion.div
+          variants={iconVariants(3.2)}
+          initial="initial"
+          animate="animate"
+          className="p-4"
+          title="Blockbench"
+        >
+          <SiBlockbench className="text-7xl text-[#1E93D9]" />
+        </motion.div>
+
         {/* UNITY (Ada di React Icons) */}
         <motion.div
           variants={iconVariants(3)}
@@ -65,25 +77,6 @@ const Technologies = () => {
         >
           <SiUnity className="text-7xl text-stone-700" />
         </motion.div>
-        <motion.div
-          variants={iconVariants(3.5)}
-          initial="initial"
-          animate="animate"
-          className="p-4"
-          title="Adobe Illustrator"
-        >
-          <SiAdobeillustrator className="text-7xl text-orange-600" />
-        </motion.div>
-
-        <motion.div
-          variants={iconVariants(4.5)}
-          initial="initial"
-          animate="animate"
-          className="p-4"
-          title="Sketchup"
-        >
-          <SiSketchup className="text-7xl text-blue-500" />
-        </motion.div>
 
         {/* UNREAL ENGINE (Ada di React Icons) */}
         <motion.div
@@ -93,9 +86,20 @@ const Technologies = () => {
           className="p-4"
           title="Unreal Engine"
         >
-            <div className="bg-stone-800 rounded-full p-2">
-                <SiUnrealengine className="text-6xl text-white" />
-            </div>
+          <div className="bg-stone-800 rounded-full p-2">
+            <SiUnrealengine className="text-6xl text-white" />
+          </div>
+        </motion.div>
+
+        {/* ADOBE ILLUSTRATOR */}
+        <motion.div
+          variants={iconVariants(3.5)}
+          initial="initial"
+          animate="animate"
+          className="p-4"
+          title="Adobe Illustrator"
+        >
+          <SiAdobeillustrator className="text-7xl text-orange-600" />
         </motion.div>
 
         {/* PHOTOSHOP (Ada di React Icons) */}
@@ -109,19 +113,38 @@ const Technologies = () => {
           <SiAdobephotoshop className="text-7xl text-blue-600" />
         </motion.div>
 
-        {/* AUTODESK (Maya/3ds Max) - Placeholder Umum */}
-        
-
-        
-        {<motion.div
-            variants={iconVariants(4)}
-            initial="initial"
-            animate="animate"
-            className="p-4"
+        {/* SKETCHUP */}
+        <motion.div
+          variants={iconVariants(4.5)}
+          initial="initial"
+          animate="animate"
+          className="p-4"
+          title="Sketchup"
         >
-            <img src={substanceIcon} alt="Substance Painter" loading="lazy" decoding="async" className="w-20 h-20 object-contain" />
-        </motion.div> 
-        }
+          <SiSketchup className="text-7xl text-blue-500" />
+        </motion.div>
+
+        {/* SUBSTANCE PAINTER */}
+        <motion.div
+          variants={iconVariants(4)}
+          initial="initial"
+          animate="animate"
+          className="p-4"
+          title="Substance Painter"
+        >
+          <img src={substanceIcon} alt="Substance Painter" loading="lazy" decoding="async" className="w-20 h-20 object-contain" />
+        </motion.div>
+
+        {/* GIT */}
+        <motion.div
+          variants={iconVariants(2.8)}
+          initial="initial"
+          animate="animate"
+          className="p-4"
+          title="Git"
+        >
+          <SiGit className="text-7xl text-[#F05032]" />
+        </motion.div>
 
       </motion.div>
     </div>

@@ -31,28 +31,31 @@ const childVariants = {
 const Hero = () => {
   return (
     <div className="pb-4 lg:mb-36">
-      <div className="flex flex-wrap lg:flex-row-reverse">
-        <div className="w-full lg:w-1/2 flex justify-center items-center lg:p-8">
+      <div className="flex flex-col items-center justify-center text-center">
+        {/* Profile Image */}
+        <div className="flex justify-center items-center mx-auto mb-8">
           <motion.img
             src={profileAbim}
             alt="Aisha Aurora Zirlyvera"
             decoding="async"
-            className="rounded-3xl w-[80%] max-w-[450px] h-auto object-contain"
+            className="rounded-3xl w-48 h-48 object-contain"
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
           />
         </div>
+
+        {/* Text Content */}
         <motion.div
-          className="w-full lg:w-1/2 "
+          className="w-full max-w-4xl"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
-          <div className="flex flex-col items-center lg:items-start mt-10">
+          <div className="flex flex-col items-center justify-center text-center">
             <motion.h2
               variants={childVariants}
-              className="pb-2 text-4xl tracking-tighter lg:text-8xl bg-gradient-to-r from-emerald-900 to-green-700 bg-clip-text text-transparent"
+              className="pb-2 text-4xl tracking-tighter lg:text-8xl bg-gradient-to-r from-emerald-900 to-green-700 bg-clip-text text-transparent text-center"
             >
               Aisha Aurora Zirlyvera
             </motion.h2>
@@ -60,19 +63,19 @@ const Hero = () => {
             {/* KEMBALI KE SEMULA: Teks Gradasi (Tanpa Box) */}
             <motion.span
               variants={childVariants}
-              className="bg-gradient-to-r from-pink-300 to-emerald-300 bg-clip-text text-3xl tracking-tight text-transparent font-semibold"
+              className="bg-gradient-to-r from-pink-300 to-emerald-300 bg-clip-text text-3xl tracking-tight text-transparent font-semibold text-center"
             >
               3D Artist Generalist
             </motion.span>
             
             <motion.p
               variants={childVariants}
-              className="my-2 max-w-lg py-6 text-xl loading-relaxed tracking-tighter"
+              className="my-2 max-w-2xl mx-auto py-6 text-xl leading-relaxed tracking-tighter text-center"
             >
               {HERO_CONTENT}
             </motion.p>
             
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-wrap justify-center gap-4 mb-10">
               {/* UPDATE: Tombol Hijau Murni (Tanpa Pink) */}
               <motion.a
                 variants={childVariants}

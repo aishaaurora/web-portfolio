@@ -10,7 +10,18 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const categories = ["All", "3D Character", "Animation Video", "Game Art", "3D Icon", "Projects", "2D Illustration"];
+  // Kategori filter dinamis berdasarkan data projects yang di-fetch dari Notion
+  const allCategories = [
+    "All",
+    ...new Set(
+      projects
+        .flatMap((p) => {
+          const cats = p.categories ?? p.category ?? [];
+          return Array.isArray(cats) ? cats : [cats];
+        })
+        .filter(Boolean)
+    ),
+  ];
 
   // Menarik data dari API lokal saat komponen pertama kali dimuat
   useEffect(() => {
@@ -37,12 +48,13 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
-  // Filter menggunakan state 'projects' hasil fetch, bukan konstanta lama
+  // Filter menggunakan state 'projects' hasil fetch
   const filteredProjects = activeCategory === "All"
     ? projects
-    : projects.filter(project =>
-      project.categories && project.categories.includes(activeCategory)
-    );
+    : projects.filter(project => {
+      const cats = project.categories ?? project.category ?? [];
+      return Array.isArray(cats) ? cats.includes(activeCategory) : cats === activeCategory;
+    });
 
   return (
     <div className="pb-4">
@@ -57,9 +69,9 @@ const Projects = () => {
 
       {/* --- TOMBOL FILTER --- */}
       <div className="flex flex-wrap justify-center gap-4 mb-12">
-        {categories.map((category, index) => (
+        {allCategories.map((category) => (
           <button
-            key={index}
+            key={category}
             onClick={() => setActiveCategory(category)}
             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border 
               ${activeCategory === category
