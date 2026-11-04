@@ -65,12 +65,12 @@ const Hero = () => {
               variants={childVariants}
               className="bg-gradient-to-r from-pink-300 to-emerald-300 bg-clip-text text-3xl tracking-tight text-transparent font-semibold text-center"
             >
-              3D Artist Generalist
+              Game Developer & 3D Generalist
             </motion.span>
             
             <motion.p
               variants={childVariants}
-              className="my-2 max-w-2xl mx-auto py-6 text-xl leading-relaxed tracking-tighter text-center"
+              className="my-2 max-w-2xl mx-auto py-6 text-xl leading-relaxed tracking-tighter text-center whitespace-pre-line"
             >
               {HERO_CONTENT}
             </motion.p>
